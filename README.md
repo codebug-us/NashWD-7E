@@ -56,7 +56,13 @@ Airtable is a beautiful mixture between a spreadsheet and a database. They have 
 1. First, we'll need to create some [JSON](https://www.w3schools.com/js/js_json_intro.asp) (JavaScript Object Notation) which is really just a formal syntax we use to send data to and from different web applications. Our JSON will need to contain the information we want to write to our database, and format it according to the structure of our database. Here's an example: 
 
 ```
-var new_record = {"fields": {"username": "i_was_just_written_username", "score": 43, "created_at": new Date()}};
+var new_record = {
+	"fields": {
+		"username": "i_was_just_written_username", 
+		"score": 43, 
+		"created_at": new Date()
+	}
+};
 var new_record_json = JSON.stringify(new_record);
 ```
 
