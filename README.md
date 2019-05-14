@@ -61,42 +61,42 @@ Airtable is a beautiful mixture between a spreadsheet and a database. They have 
 
 1. First, we'll need to create some [JSON](https://www.w3schools.com/js/js_json_intro.asp) (JavaScript Object Notation) which is really just a formal syntax we use to send data to and from different web applications. Our JSON will need to contain the information we want to write to our database, and format it according to the structure of our database. Here's an example: 
 
-```
-var new_record = {
-	"fields": {
-		"username": "i_was_just_written_username", 
-		"score": 43, 
-		"created_at": new Date()
-	}
-};
-var new_record_json = JSON.stringify(new_record);
-```
+	```
+	var new_record = {
+		"fields": {
+			"username": "i_was_just_written_username", 
+			"score": 43, 
+			"created_at": new Date()
+		}
+	};
+	var new_record_json = JSON.stringify(new_record);
+	```
 
-Notice that the `username`, `score`, and `created_at` match exactly to the columns in our database. See how each column name (also known as a `key`) is separated by it's value using a `:`, that is a typical convention used to say this `key` is associated with this `value`. So `score` is associated with `43` by the colon-separation. We separate each key-value pair with a comma, and surround them with curly braces `{}`. You'll see that the key `fields` is actually pointing to it's value `{"username": "i_was_just_written_username", "score": 43, "created_at": new Date()}` which is just all the fields. Airtable requires you to put all your values inside the key `fields` so everything stays organized. `new Date()` is simply a way to create a new Date object for the current date/time in JavaScript.
+	Notice that the `username`, `score`, and `created_at` match exactly to the columns in our database. See how each column name (also known as a `key`) is separated by it's value using a `:`, that is a typical convention used to say this `key` is associated with this `value`. So `score` is associated with `43` by the colon-separation. We separate each key-value pair with a comma, and surround them with curly braces `{}`. You'll see that the key `fields` is actually pointing to it's value `{"username": "i_was_just_written_username", "score": 43, "created_at": new Date()}` which is just all the fields. Airtable requires you to put all your values inside the key `fields` so everything stays organized. `new Date()` is simply a way to create a new Date object for the current date/time in JavaScript.
 
-We then convert our JavaScript object into official JSON using the [JSON.stringify](https://www.w3schools.com/js/js_json_stringify.asp) command. 
+	We then convert our JavaScript object into official JSON using the [JSON.stringify](https://www.w3schools.com/js/js_json_stringify.asp) command. 
 
-Add that code to your script.js file, and let's write to our database. 
+	Add that code to your script.js file, and let's write to our database. 
 
 1. Notice in the API Documentation, if you scroll down to "Create game_log records" that the first line says to submit a POST request. That's exactly what we're going to do. We are now sending data to Airtable, and when we send data, we use a POST request. POST requests in AJAX are very similar to GET requests, but contain a few more pieces of information: 
 
-```
-	var writeRequest = $.ajax({
-		url: airtable_endpoint,
-		method: "POST",
-		contentType: "application/json",
-		data: new_record_json,
-	});
+	```
+		var writeRequest = $.ajax({
+			url: airtable_endpoint,
+			method: "POST",
+			contentType: "application/json",
+			data: new_record_json,
+		});
 
-	writeRequest.done(function(response){
-		console.log("writing response: ", response);
-	});
-```
+		writeRequest.done(function(response){
+			console.log("writing response: ", response);
+		});
+	```
 
-Notice there are two new key-value pairs in our AJAX request (`contentType` and `data`). `contentType` tells Airtable that the data we are sending them is JSON, and then our `data` field is just sending the JSON-formatted data we created. Our `done` function is exactly the same as before. 
+	Notice there are two new key-value pairs in our AJAX request (`contentType` and `data`). `contentType` tells Airtable that the data we are sending them is JSON, and then our `data` field is just sending the JSON-formatted data we created. Our `done` function is exactly the same as before. 
 
-Add these lines into your script.js file and refresh your Chrome page. Once you do, if you don't see any errors, navigate back to your Airtable database and see if you can view the new row we just added!
+	Add these lines into your script.js file and refresh your Chrome page. Once you do, if you don't see any errors, navigate back to your Airtable database and see if you can view the new row we just added!
 
-**Obviously in this example we hardcoded the data we are sending. In a more real-life scenario, when the user comes to play your game, you would have them enter their username, you would store that in a variable, you would store their score as they play the game in a variable, and when the game ends, you would format the data and submit it to Airtable to be saved.**
+	**Obviously in this example we hardcoded the data we are sending. In a more real-life scenario, when the user comes to play your game, you would have them enter their username, you would store that in a variable, you would store their score as they play the game in a variable, and when the game ends, you would format the data and submit it to Airtable to be saved.**
 
 
