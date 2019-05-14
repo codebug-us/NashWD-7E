@@ -55,7 +55,7 @@ Airtable is a beautiful mixture between a spreadsheet and a database. They have 
 
 1. Now remove the `maxRecords` and `view` parameters from the url, and let's add in our apiKey so it looks more like this: `var airtable_endpoint = "https://api.airtable.com/v0/appk6ct5l7ib1aLC2/game_log?api_key=" + apiKey;`. 
 
-1. Write a GET request (like we did for the Dog API in [NashWD-6B](https://github.com/codebug-us/NashWD-6B)) to the Airtable API to fetch all the records in our database. In the `done` function, console.log the response. Once you've completed this, open the index.html file and look at the console. You will need to click through the object returned in order to see your 3 records of data.
+1. Write a GET request (like we did for the Dog API) to the Airtable API to fetch all the records in our database. In the `done` function, console.log the response. Once you've completed this, open the index.html file and look at the console. You will need to click through the object returned in order to see your 3 records of data.
 
 1. Alright! Not bad! We can now read data from our database. Let's write some data to our database.
 
