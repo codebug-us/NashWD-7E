@@ -82,7 +82,7 @@ Airtable is a beautiful mixture between a spreadsheet and a database. They have 
 
 	```
 		var writeRequest = $.ajax({
-			url: airtable_endpoint,
+			url: airtableEndpoint,
 			method: "POST",
 			contentType: "application/json",
 			data: new_record_json,
