@@ -51,7 +51,7 @@ Airtable is a beautiful mixture between a spreadsheet and a database. They have 
 
 1. Okay, now that our database and API key are set up and we're ready to write some code. Go back to the tab with our database and click "Help" in the top right corner, then click "API Documentation". The Airtable API Documentation actually uses your database and table information in its examples (very cool...I know). 
 
-1. Scroll down until you see "List game_log records". You'll see the example URL on the right side after the word `curl`. Let's copy/paste the URL into a variable named `airtable_endpoint`. It should look something like this: `"https://api.airtable.com/v0/appk6ct5l7ib1aLC2/game_log?maxRecords=3&view=Grid%20view"`
+1. Scroll down until you see "List game_log records". You'll see the example URL on the right side after the word `curl`. Let's copy/paste the URL into a variable named `airtableEndpoint`. It should look something like this: `"https://api.airtable.com/v0/appk6ct5l7ib1aLC2/game_log?maxRecords=3&view=Grid%20view"`
 
 1. Now remove the `maxRecords` and `view` parameters from the url, and let's add in our apiKey so it looks more like this: `var airtable_endpoint = "https://api.airtable.com/v0/appk6ct5l7ib1aLC2/game_log?api_key=" + apiKey;`. 
 
