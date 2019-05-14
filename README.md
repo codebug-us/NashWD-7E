@@ -35,19 +35,25 @@ Airtable is a beautiful mixture between a spreadsheet and a database. They have 
 
 1. Click on your "Base" and let's change some of the fields (attributes) also known as "columns" to reflect what we are trying to store. For our Jeopardy game, we should store a `username`, `score`, and `created_at` (date/time) the score was created. Change the column names to reflect what we need to store (`username`, `score`, `created_at`). I also like to use the same naming conventions for my column names as for my database names (lowercase + underscores for spaces) also known as [snake case](https://en.wikipedia.org/wiki/Snake_case). Again, this makes your API requests easier and capitalizations matter! 
 
-1. Now, we'll likely want to store our score as a number, so click on the dropdown arrow for our "score" column, and let's customize the field type to be a number. Set this value as an integer instead of a decimal number, then click save. 
+1. Now, we'll likely want to store our score as a number, so click on the dropdown arrow for our `score` column, and let's customize the field type to be a number. Set this value as an integer instead of a decimal number, then click save. 
 
 1. Do the same thing to our `created_at` field, only change the field type to Date, and click the switch to "Include a time field". 
 
-1. Add 3 rows of fake data into our game_log table, so we have some sample data to play with. 
+1. Add 3 rows of fake data into our `game_log` table, so we have some sample data to play with. 
 
-1. Now since we are going to interact with our database via the API, we need an API Key so that Airtable knows it's us requesting the data. Click the profile image in the top right corner, and then select "Account". Scroll down and click "Generate API Key". Copy the API Key to your clipboard and then create a variable called `api_key` in your script.js and store your api key as a string. 
+1. Now since we are going to interact with our database via the API, we need an API Key so that Airtable knows it's us requesting the data. As a developer, you have to be very careful with your API keys. They should not be accessible to other people (specifically they should NOT be checked in to GitHub!). We are going to store our API keys in a file called `secrets.js`. Look through our repository and find the file called `.gitignore`. This file tells git which files should NOT be pushed up to GitHub, (they should be ignored). Inside your `.gitignore` file we have already put `secrets.js`. Add a file to your repository called `secrets.js` **make sure to name it the same name we have in our .gitignore**. 
 
-1. Okay, now our database is set up and we're ready to write some code. Go back to the tab with our database and click "Help" in the top right corner, then click "API Documentation". The Airtable API Documentation actually uses your database and table information in its examples (very cool...I know). 
+1. Now, let's run a test. Add a fake variable in your `secrets.js` file. Such as, `var testing = "jgkasdgn"`. Now push your code up to GitHub and make sure your `secrets.js` file did not get pushed!!
+
+1. Okay great, now that we know the `secrets.js` file does not get pushed to GitHub, we can add a real API key to your code. To create one, go to your Airtable account and click on the profile image in the top right corner, and then select "Account". Scroll down and click "Generate API Key".
+
+1. Copy the API Key to your clipboard. Then create a variable called `apiKey` in your `secrets.js` file and store your api key as a string. Notice in your `index.html` file we added another script tag that imports `secrets.js`. This makes your variables in `secrets.js` availabed in your `script.js`. Use `console.log(apiKey)` in `script.js` to make sure you have acces to your `apiKey` there. 
+
+1. Okay, now that our database and API key are set up and we're ready to write some code. Go back to the tab with our database and click "Help" in the top right corner, then click "API Documentation". The Airtable API Documentation actually uses your database and table information in its examples (very cool...I know). 
 
 1. Scroll down until you see "List game_log records". You'll see the example URL on the right side after the word `curl`. Let's copy/paste the URL into a variable named `airtable_endpoint`. It should look something like this: `"https://api.airtable.com/v0/appk6ct5l7ib1aLC2/game_log?maxRecords=3&view=Grid%20view"`
 
-1. Now remove the `maxRecords` and `view` parameters from the url, and let's add in our api_key so it looks more like this: `var airtable_endpoint = "https://api.airtable.com/v0/appk6ct5l7ib1aLC2/game_log?api_key=" + api_key;`. 
+1. Now remove the `maxRecords` and `view` parameters from the url, and let's add in our apiKey so it looks more like this: `var airtable_endpoint = "https://api.airtable.com/v0/appk6ct5l7ib1aLC2/game_log?api_key=" + apiKey;`. 
 
 1. Write a GET request (like we did for the Dog API in [NashWD-6B](https://github.com/codebug-us/NashWD-6B)) to the Airtable API to fetch all the records in our database. In the `done` function, console.log the response. Once you've completed this, open the index.html file and look at the console. You will need to click through the object returned in order to see your 3 records of data.
 
